@@ -115,6 +115,14 @@ Logs are appended to:
 logs.txt
 ```
 
+## Training Hardware
+
+The current checkpoint was trained locally on:
+
+- CPU: AMD Ryzen 5 7600X
+- RAM: 32 GB DDR5 6000 MHz
+- GPU: NVIDIA RTX 5070 12 GB
+
 ## Export Compact Weights
 
 The full `weights/best.pt` checkpoint includes optimizer, scheduler, config, and metrics. Export model-only FP16 weights for inference and GitHub:
@@ -180,22 +188,3 @@ THRESHOLD = 0.5
 - source image
 - predicted binary mask
 - highlighted manipulated regions
-
-## GitHub Push
-
-The repository is configured to ignore datasets, full checkpoints, logs, and generated outputs. Commit the compact model-only checkpoint:
-
-```powershell
-git add .gitattributes .gitignore README.md configs create_splits.py dataset.py export_weights.py inference_demo.ipynb inference_demo.py loss.py model.py requirements.txt test.py train.py transforms.py weights/best_weights.pt
-git commit -m "Initial CASIA v2 image manipulation detection pipeline"
-git branch -M main
-gh repo create image-manipulation-detection --public --source . --remote origin --push
-```
-
-Use `--private` instead of `--public` for a private repository.
-
-## Syntax Check
-
-```powershell
-python -m py_compile model.py dataset.py transforms.py loss.py create_splits.py train.py test.py inference_demo.py export_weights.py
-```

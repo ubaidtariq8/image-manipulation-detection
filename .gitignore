@@ -19,7 +19,6 @@ weights/*
 *.ckpt
 !weights/
 !weights/best_weights.pt
-logs.txt
 
 .ipynb_checkpoints/
 .DS_Store
