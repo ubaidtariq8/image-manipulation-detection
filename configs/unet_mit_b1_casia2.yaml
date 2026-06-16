@@ -1,0 +1,41 @@
+model:
+  encoder_name: mit_b1
+  encoder_weights: imagenet
+  in_channels: 3
+  classes: 1
+  aux_pooling: avg
+  aux_dropout: 0.2
+
+data:
+  image_size: 384
+  batch_size: 32
+  num_workers: 4
+  splits_dir: splits/casia2
+
+loss:
+  dice_weight: 1.0
+  focal_weight: 1.0
+  classification_weight: 0.25
+  focal_alpha: 0.25
+  focal_gamma: 2.0
+
+optimizer:
+  lr: 1e-4
+  weight_decay: 0.0001
+
+scheduler:
+  name: warmup_cosine
+  warmup_epochs: 1
+  warmup_start_factor: 0.1
+  min_lr: 0.000001
+
+training:
+  epochs: 100
+  seed: 42
+  amp: true
+  weights_dir: weights
+
+early_stopping:
+  enabled: true
+  patience: 5
+  min_delta: 0.0
