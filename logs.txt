@@ -1,0 +1,173 @@
+2026-06-16 18:41:03,492 | INFO | Starting training
+2026-06-16 18:41:03,492 | INFO | Config: configs\unet_mit_b1_casia2.yaml
+2026-06-16 18:41:03,492 | INFO | Device: cuda
+2026-06-16 18:41:03,795 | INFO | Train batches: 314
+2026-06-16 18:41:03,795 | INFO | Val batches: 40
+2026-06-16 18:41:03,795 | INFO | AMP enabled: True
+2026-06-16 18:41:03,795 | INFO | Optimizer: AdamW lr=1e-4 weight_decay=0.0001
+2026-06-16 18:41:03,795 | INFO | Scheduler: warmup_epochs=1 cosine_min_lr=1e-06 total_epochs=100
+2026-06-16 18:41:03,795 | INFO | Early stopping: enabled=True patience=5 min_delta=0.0 monitors=val_dice,val_cls_acc
+2026-06-16 18:41:03,795 | INFO | Weights dir: weights
+2026-06-16 18:41:03,795 | INFO | Epoch 1/100 started lr=0.00001000
+2026-06-16 18:42:18,606 | INFO | Train epoch metrics: {'loss': 1.2581153166521886, 'class_accuracy': 0.6881966560509554, 'pixel_accuracy': 0.511170706361722}
+2026-06-16 18:42:36,184 | INFO | Val epoch metrics: {'loss': 1.1670240615453864, 'dice_score': 0.042860590578356464, 'class_accuracy': 0.8085782371692187, 'pixel_accuracy': 0.8382498531042346}
+2026-06-16 18:42:36,184 | INFO | Epoch 1/100 finished train_loss=1.2581 train_cls_acc=0.6882 val_loss=1.1670 val_dice=0.0429 val_cls_acc=0.8086 val_pixel_acc=0.8382
+2026-06-16 18:42:36,311 | INFO | Saved latest checkpoint: weights\latest.pt
+2026-06-16 18:42:36,456 | INFO | Saved best checkpoint: weights\best.pt dice_improved=True accuracy_improved=True best_dice=0.0429 best_cls_acc=0.8086
+2026-06-16 18:42:36,456 | INFO | Epoch 2/100 started lr=0.00010000
+2026-06-16 18:43:34,634 | INFO | Train epoch metrics: {'loss': 1.0987804788313094, 'class_accuracy': 0.7732882165605095, 'pixel_accuracy': 0.9556898121621199}
+2026-06-16 18:43:37,282 | INFO | Val epoch metrics: {'loss': 1.0235914825162213, 'dice_score': 0.09616928596147192, 'class_accuracy': 0.8252581412873635, 'pixel_accuracy': 0.9644711184255466}
+2026-06-16 18:43:37,282 | INFO | Epoch 2/100 finished train_loss=1.0988 train_cls_acc=0.7733 val_loss=1.0236 val_dice=0.0962 val_cls_acc=0.8253 val_pixel_acc=0.9645
+2026-06-16 18:43:37,428 | INFO | Saved latest checkpoint: weights\latest.pt
+2026-06-16 18:43:37,577 | INFO | Saved best checkpoint: weights\best.pt dice_improved=True accuracy_improved=True best_dice=0.0962 best_cls_acc=0.8253
+2026-06-16 18:43:37,577 | INFO | Epoch 3/100 started lr=0.00009998
+2026-06-16 18:44:35,439 | INFO | Train epoch metrics: {'loss': 0.9731262432541817, 'class_accuracy': 0.8267316878980892, 'pixel_accuracy': 0.9619695382892706}
+2026-06-16 18:44:38,027 | INFO | Val epoch metrics: {'loss': 0.914732159556994, 'dice_score': 0.5803223705840925, 'class_accuracy': 0.8633836380444982, 'pixel_accuracy': 0.9596652977517713}
+2026-06-16 18:44:38,027 | INFO | Epoch 3/100 finished train_loss=0.9731 train_cls_acc=0.8267 val_loss=0.9147 val_dice=0.5803 val_cls_acc=0.8634 val_pixel_acc=0.9597
+2026-06-16 18:44:38,172 | INFO | Saved latest checkpoint: weights\latest.pt
+2026-06-16 18:44:38,314 | INFO | Saved best checkpoint: weights\best.pt dice_improved=True accuracy_improved=True best_dice=0.5803 best_cls_acc=0.8634
+2026-06-16 18:44:38,314 | INFO | Epoch 4/100 started lr=0.00009990
+2026-06-16 18:45:36,200 | INFO | Train epoch metrics: {'loss': 0.8153955216050908, 'class_accuracy': 0.837281050955414, 'pixel_accuracy': 0.970389857034015}
+2026-06-16 18:45:38,915 | INFO | Val epoch metrics: {'loss': 0.7691166329895153, 'dice_score': 0.6827927292860908, 'class_accuracy': 0.8649722003955704, 'pixel_accuracy': 0.9779841657003019}
+2026-06-16 18:45:38,915 | INFO | Epoch 4/100 finished train_loss=0.8154 train_cls_acc=0.8373 val_loss=0.7691 val_dice=0.6828 val_cls_acc=0.8650 val_pixel_acc=0.9780
+2026-06-16 18:45:39,070 | INFO | Saved latest checkpoint: weights\latest.pt
+2026-06-16 18:45:39,219 | INFO | Saved best checkpoint: weights\best.pt dice_improved=True accuracy_improved=True best_dice=0.6828 best_cls_acc=0.8650
+2026-06-16 18:45:39,219 | INFO | Epoch 5/100 started lr=0.00009978
+2026-06-16 18:46:37,677 | INFO | Train epoch metrics: {'loss': 0.6531573218904483, 'class_accuracy': 0.846437101910828, 'pixel_accuracy': 0.9779392811143475}
+2026-06-16 18:46:40,402 | INFO | Val epoch metrics: {'loss': 0.5817980557987859, 'dice_score': 0.6959038818990361, 'class_accuracy': 0.8919777603637993, 'pixel_accuracy': 0.9787018924501796}
+2026-06-16 18:46:40,402 | INFO | Epoch 5/100 finished train_loss=0.6532 train_cls_acc=0.8464 val_loss=0.5818 val_dice=0.6959 val_cls_acc=0.8920 val_pixel_acc=0.9787
+2026-06-16 18:46:40,561 | INFO | Saved latest checkpoint: weights\latest.pt
+2026-06-16 18:46:40,704 | INFO | Saved best checkpoint: weights\best.pt dice_improved=True accuracy_improved=True best_dice=0.6959 best_cls_acc=0.8920
+2026-06-16 18:46:40,704 | INFO | Epoch 6/100 started lr=0.00009960
+2026-06-16 18:47:39,466 | INFO | Train epoch metrics: {'loss': 0.5733410532402384, 'class_accuracy': 0.8422571656050956, 'pixel_accuracy': 0.9816057869962825}
+2026-06-16 18:47:42,111 | INFO | Val epoch metrics: {'loss': 0.5821974136888082, 'dice_score': 0.7226964217788933, 'class_accuracy': 0.8864177923717604, 'pixel_accuracy': 0.9767352544759549}
+2026-06-16 18:47:42,111 | INFO | Epoch 6/100 finished train_loss=0.5733 train_cls_acc=0.8423 val_loss=0.5822 val_dice=0.7227 val_cls_acc=0.8864 val_pixel_acc=0.9767
+2026-06-16 18:47:42,255 | INFO | Saved latest checkpoint: weights\latest.pt
+2026-06-16 18:47:42,398 | INFO | Saved best checkpoint: weights\best.pt dice_improved=True accuracy_improved=False best_dice=0.7227 best_cls_acc=0.8920
+2026-06-16 18:47:42,398 | INFO | Epoch 7/100 started lr=0.00009938
+2026-06-16 18:48:41,204 | INFO | Train epoch metrics: {'loss': 0.5002635525670022, 'class_accuracy': 0.8533041401273885, 'pixel_accuracy': 0.9843259349370458}
+2026-06-16 18:48:43,819 | INFO | Val epoch metrics: {'loss': 0.6005959498967511, 'dice_score': 0.7371563339536392, 'class_accuracy': 0.8610007944705469, 'pixel_accuracy': 0.9779900973803283}
+2026-06-16 18:48:43,819 | INFO | Epoch 7/100 finished train_loss=0.5003 train_cls_acc=0.8533 val_loss=0.6006 val_dice=0.7372 val_cls_acc=0.8610 val_pixel_acc=0.9780
+2026-06-16 18:48:43,962 | INFO | Saved latest checkpoint: weights\latest.pt
+2026-06-16 18:48:44,105 | INFO | Saved best checkpoint: weights\best.pt dice_improved=True accuracy_improved=False best_dice=0.7372 best_cls_acc=0.8920
+2026-06-16 18:48:44,105 | INFO | Epoch 8/100 started lr=0.00009911
+2026-06-16 18:49:42,828 | INFO | Train epoch metrics: {'loss': 0.4380525412263384, 'class_accuracy': 0.8646496815286624, 'pixel_accuracy': 0.9862280313376408}
+2026-06-16 18:49:45,470 | INFO | Val epoch metrics: {'loss': 0.43258359666094126, 'dice_score': 0.7708144930263092, 'class_accuracy': 0.8848292300206883, 'pixel_accuracy': 0.9874124964898877}
+2026-06-16 18:49:45,470 | INFO | Epoch 8/100 finished train_loss=0.4381 train_cls_acc=0.8646 val_loss=0.4326 val_dice=0.7708 val_cls_acc=0.8848 val_pixel_acc=0.9874
+2026-06-16 18:49:45,614 | INFO | Saved latest checkpoint: weights\latest.pt
+2026-06-16 18:49:45,755 | INFO | Saved best checkpoint: weights\best.pt dice_improved=True accuracy_improved=False best_dice=0.7708 best_cls_acc=0.8920
+2026-06-16 18:49:45,755 | INFO | Epoch 9/100 started lr=0.00009878
+2026-06-16 18:50:44,434 | INFO | Train epoch metrics: {'loss': 0.4011441890126581, 'class_accuracy': 0.8762937898089171, 'pixel_accuracy': 0.9879032221569377}
+2026-06-16 18:50:47,080 | INFO | Val epoch metrics: {'loss': 0.4153240147543105, 'dice_score': 0.7726490091387481, 'class_accuracy': 0.8967434474170161, 'pixel_accuracy': 0.9879286637658444}
+2026-06-16 18:50:47,080 | INFO | Epoch 9/100 finished train_loss=0.4011 train_cls_acc=0.8763 val_loss=0.4153 val_dice=0.7726 val_cls_acc=0.8967 val_pixel_acc=0.9879
+2026-06-16 18:50:47,237 | INFO | Saved latest checkpoint: weights\latest.pt
+2026-06-16 18:50:47,380 | INFO | Saved best checkpoint: weights\best.pt dice_improved=True accuracy_improved=True best_dice=0.7726 best_cls_acc=0.8967
+2026-06-16 18:50:47,380 | INFO | Epoch 10/100 started lr=0.00009841
+2026-06-16 18:51:46,184 | INFO | Train epoch metrics: {'loss': 0.4073919506779142, 'class_accuracy': 0.8670382165605095, 'pixel_accuracy': 0.9873787939168845}
+2026-06-16 18:51:48,825 | INFO | Val epoch metrics: {'loss': 0.4150598944417061, 'dice_score': 0.759911224660275, 'class_accuracy': 0.8768864180286126, 'pixel_accuracy': 0.9860292443498152}
+2026-06-16 18:51:48,825 | INFO | Epoch 10/100 finished train_loss=0.4074 train_cls_acc=0.8670 val_loss=0.4151 val_dice=0.7599 val_cls_acc=0.8769 val_pixel_acc=0.9860
+2026-06-16 18:51:48,967 | INFO | Saved latest checkpoint: weights\latest.pt
+2026-06-16 18:51:48,967 | INFO | No val Dice/class-accuracy improvement for 1/5 epochs.
+2026-06-16 18:51:48,967 | INFO | Epoch 11/100 started lr=0.00009799
+2026-06-16 18:52:47,877 | INFO | Train epoch metrics: {'loss': 0.3605629792021718, 'class_accuracy': 0.8638535031847133, 'pixel_accuracy': 0.989252151577336}
+2026-06-16 18:52:50,528 | INFO | Val epoch metrics: {'loss': 0.3980447487569783, 'dice_score': 0.784750287025291, 'class_accuracy': 0.8999205723558749, 'pixel_accuracy': 0.9882341447664311}
+2026-06-16 18:52:50,528 | INFO | Epoch 11/100 finished train_loss=0.3606 train_cls_acc=0.8639 val_loss=0.3980 val_dice=0.7848 val_cls_acc=0.8999 val_pixel_acc=0.9882
+2026-06-16 18:52:50,670 | INFO | Saved latest checkpoint: weights\latest.pt
+2026-06-16 18:52:50,813 | INFO | Saved best checkpoint: weights\best.pt dice_improved=True accuracy_improved=True best_dice=0.7848 best_cls_acc=0.8999
+2026-06-16 18:52:50,813 | INFO | Epoch 12/100 started lr=0.00009753
+2026-06-16 18:53:49,838 | INFO | Train epoch metrics: {'loss': 0.3591396373453414, 'class_accuracy': 0.8714171974522293, 'pixel_accuracy': 0.9892748402562112}
+2026-06-16 18:53:52,610 | INFO | Val epoch metrics: {'loss': 0.3795439835883399, 'dice_score': 0.7780291391233304, 'class_accuracy': 0.8602065135790679, 'pixel_accuracy': 0.9888744181446654}
+2026-06-16 18:53:52,610 | INFO | Epoch 12/100 finished train_loss=0.3591 train_cls_acc=0.8714 val_loss=0.3795 val_dice=0.7780 val_cls_acc=0.8602 val_pixel_acc=0.9889
+2026-06-16 18:53:52,761 | INFO | Saved latest checkpoint: weights\latest.pt
+2026-06-16 18:53:52,761 | INFO | No val Dice/class-accuracy improvement for 1/5 epochs.
+2026-06-16 18:53:52,761 | INFO | Epoch 13/100 started lr=0.00009701
+2026-06-16 18:54:55,603 | INFO | Train epoch metrics: {'loss': 0.33995721868838474, 'class_accuracy': 0.8691281847133758, 'pixel_accuracy': 0.9898074618570364}
+2026-06-16 18:54:58,428 | INFO | Val epoch metrics: {'loss': 0.33129853700199613, 'dice_score': 0.8030509099873216, 'class_accuracy': 0.9054805403479136, 'pixel_accuracy': 0.9895801431986905}
+2026-06-16 18:54:58,428 | INFO | Epoch 13/100 finished train_loss=0.3400 train_cls_acc=0.8691 val_loss=0.3313 val_dice=0.8031 val_cls_acc=0.9055 val_pixel_acc=0.9896
+2026-06-16 18:54:58,584 | INFO | Saved latest checkpoint: weights\latest.pt
+2026-06-16 18:54:58,740 | INFO | Saved best checkpoint: weights\best.pt dice_improved=True accuracy_improved=True best_dice=0.8031 best_cls_acc=0.9055
+2026-06-16 18:54:58,740 | INFO | Epoch 14/100 started lr=0.00009645
+2026-06-16 18:56:01,663 | INFO | Train epoch metrics: {'loss': 0.3351196533982541, 'class_accuracy': 0.8772890127388535, 'pixel_accuracy': 0.9899485257400829}
+2026-06-16 18:56:04,474 | INFO | Val epoch metrics: {'loss': 0.42036204116982634, 'dice_score': 0.7766870834507386, 'class_accuracy': 0.8737092932791252, 'pixel_accuracy': 0.9883127421779799}
+2026-06-16 18:56:04,474 | INFO | Epoch 14/100 finished train_loss=0.3351 train_cls_acc=0.8773 val_loss=0.4204 val_dice=0.7767 val_cls_acc=0.8737 val_pixel_acc=0.9883
+2026-06-16 18:56:04,656 | INFO | Saved latest checkpoint: weights\latest.pt
+2026-06-16 18:56:04,656 | INFO | No val Dice/class-accuracy improvement for 1/5 epochs.
+2026-06-16 18:56:04,656 | INFO | Epoch 15/100 started lr=0.00009585
+2026-06-16 18:57:04,622 | INFO | Train epoch metrics: {'loss': 0.3178007143674193, 'class_accuracy': 0.8800756369426752, 'pixel_accuracy': 0.9906719714213329}
+2026-06-16 18:57:07,314 | INFO | Val epoch metrics: {'loss': 0.36345785020645693, 'dice_score': 0.7954608292878858, 'class_accuracy': 0.8880063544861185, 'pixel_accuracy': 0.9881035481491574}
+2026-06-16 18:57:07,314 | INFO | Epoch 15/100 finished train_loss=0.3178 train_cls_acc=0.8801 val_loss=0.3635 val_dice=0.7955 val_cls_acc=0.8880 val_pixel_acc=0.9881
+2026-06-16 18:57:07,456 | INFO | Saved latest checkpoint: weights\latest.pt
+2026-06-16 18:57:07,456 | INFO | No val Dice/class-accuracy improvement for 2/5 epochs.
+2026-06-16 18:57:07,456 | INFO | Epoch 16/100 started lr=0.00009519
+2026-06-16 18:58:06,590 | INFO | Train epoch metrics: {'loss': 0.31989463698712123, 'class_accuracy': 0.8797770700636943, 'pixel_accuracy': 0.990373384231215}
+2026-06-16 18:58:09,288 | INFO | Val epoch metrics: {'loss': 0.36167350264652276, 'dice_score': 0.7814508216356455, 'class_accuracy': 0.8848292297839739, 'pixel_accuracy': 0.989404918514991}
+2026-06-16 18:58:09,288 | INFO | Epoch 16/100 finished train_loss=0.3199 train_cls_acc=0.8798 val_loss=0.3617 val_dice=0.7815 val_cls_acc=0.8848 val_pixel_acc=0.9894
+2026-06-16 18:58:09,432 | INFO | Saved latest checkpoint: weights\latest.pt
+2026-06-16 18:58:09,434 | INFO | No val Dice/class-accuracy improvement for 3/5 epochs.
+2026-06-16 18:58:09,434 | INFO | Epoch 17/100 started lr=0.00009450
+2026-06-16 18:59:08,859 | INFO | Train epoch metrics: {'loss': 0.3204560819776005, 'class_accuracy': 0.8861464968152867, 'pixel_accuracy': 0.9901923260111718}
+2026-06-16 18:59:11,535 | INFO | Val epoch metrics: {'loss': 0.3538385478866962, 'dice_score': 0.7927538149881401, 'class_accuracy': 0.8792692617919352, 'pixel_accuracy': 0.9892658971433511}
+2026-06-16 18:59:11,535 | INFO | Epoch 17/100 finished train_loss=0.3205 train_cls_acc=0.8861 val_loss=0.3538 val_dice=0.7928 val_cls_acc=0.8793 val_pixel_acc=0.9893
+2026-06-16 18:59:11,682 | INFO | Saved latest checkpoint: weights\latest.pt
+2026-06-16 18:59:11,683 | INFO | No val Dice/class-accuracy improvement for 4/5 epochs.
+2026-06-16 18:59:11,683 | INFO | Epoch 18/100 started lr=0.00009376
+2026-06-16 19:00:10,981 | INFO | Train epoch metrics: {'loss': 0.3011618971967014, 'class_accuracy': 0.886843152866242, 'pixel_accuracy': 0.9911378751135176}
+2026-06-16 19:00:13,643 | INFO | Val epoch metrics: {'loss': 0.3453198141692838, 'dice_score': 0.7950946606748913, 'class_accuracy': 0.901509134470233, 'pixel_accuracy': 0.9888188864523878}
+2026-06-16 19:00:13,643 | INFO | Epoch 18/100 finished train_loss=0.3012 train_cls_acc=0.8868 val_loss=0.3453 val_dice=0.7951 val_cls_acc=0.9015 val_pixel_acc=0.9888
+2026-06-16 19:00:13,787 | INFO | Saved latest checkpoint: weights\latest.pt
+2026-06-16 19:00:13,787 | INFO | No val Dice/class-accuracy improvement for 5/5 epochs.
+2026-06-16 19:00:13,788 | INFO | Early stopping triggered at epoch 18. Best val_dice=0.8031 best_val_cls_acc=0.9055
+2026-06-16 19:02:08,479 | INFO | Starting evaluation
+2026-06-16 19:02:08,479 | INFO | Config: configs\unet_mit_b1_casia2.yaml
+2026-06-16 19:02:08,479 | INFO | Checkpoint: weights\best.pt
+2026-06-16 19:02:08,479 | INFO | Split: test
+2026-06-16 19:02:08,494 | INFO | Device: cuda
+2026-06-16 19:02:09,017 | INFO | Loaded checkpoint epoch: 13
+2026-06-16 19:02:09,019 | INFO | Samples: 1261
+2026-06-16 19:02:09,019 | INFO | Batches: 40
+2026-06-16 19:03:22,776 | INFO | Evaluation metrics:
+2026-06-16 19:03:22,776 | INFO |   classification_tp: 446
+2026-06-16 19:03:22,776 | INFO |   classification_tn: 678
+2026-06-16 19:03:22,776 | INFO |   classification_fp: 72
+2026-06-16 19:03:22,776 | INFO |   classification_fn: 65
+2026-06-16 19:03:22,776 | INFO |   classification_accuracy: 0.8913560666137986
+2026-06-16 19:03:22,776 | INFO |   classification_balanced_accuracy: 0.888399217221135
+2026-06-16 19:03:22,776 | INFO |   classification_precision: 0.861003861003861
+2026-06-16 19:03:22,776 | INFO |   classification_recall: 0.87279843444227
+2026-06-16 19:03:22,777 | INFO |   classification_specificity: 0.904
+2026-06-16 19:03:22,777 | INFO |   classification_f1: 0.8668610301263362
+2026-06-16 19:03:22,777 | INFO |   classification_iou: 0.7650085763293311
+2026-06-16 19:03:22,777 | INFO |   classification_mcc: 0.775157827075982
+2026-06-16 19:03:22,777 | INFO |   segmentation_global_tp: 3159958
+2026-06-16 19:03:22,777 | INFO |   segmentation_global_tn: 180696633
+2026-06-16 19:03:22,778 | INFO |   segmentation_global_fp: 652068
+2026-06-16 19:03:22,778 | INFO |   segmentation_global_fn: 1433357
+2026-06-16 19:03:22,778 | INFO |   segmentation_global_accuracy: 0.9887845413056079
+2026-06-16 19:03:22,778 | INFO |   segmentation_global_balanced_accuracy: 0.8421757497397686
+2026-06-16 19:03:22,778 | INFO |   segmentation_global_precision: 0.8289445035264712
+2026-06-16 19:03:22,778 | INFO |   segmentation_global_recall: 0.6879471579893824
+2026-06-16 19:03:22,778 | INFO |   segmentation_global_specificity: 0.9964043414901549
+2026-06-16 19:03:22,778 | INFO |   segmentation_global_f1: 0.7518928738286763
+2026-06-16 19:03:22,778 | INFO |   segmentation_global_iou: 0.6024265530276817
+2026-06-16 19:03:22,778 | INFO |   segmentation_global_mcc: 0.7496022880819722
+2026-06-16 19:03:22,778 | INFO |   segmentation_forged_only_tp: 3159958
+2026-06-16 19:03:22,778 | INFO |   segmentation_forged_only_tn: 70141408
+2026-06-16 19:03:22,778 | INFO |   segmentation_forged_only_fp: 615293
+2026-06-16 19:03:22,778 | INFO |   segmentation_forged_only_fn: 1433357
+2026-06-16 19:03:22,778 | INFO |   segmentation_forged_only_accuracy: 0.9728115518913758
+2026-06-16 19:03:22,778 | INFO |   segmentation_forged_only_balanced_accuracy: 0.8396256303813154
+2026-06-16 19:03:22,778 | INFO |   segmentation_forged_only_precision: 0.8370193134178363
+2026-06-16 19:03:22,778 | INFO |   segmentation_forged_only_recall: 0.6879471579893824
+2026-06-16 19:03:22,778 | INFO |   segmentation_forged_only_specificity: 0.9913041027732483
+2026-06-16 19:03:22,779 | INFO |   segmentation_forged_only_f1: 0.7551970074681851
+2026-06-16 19:03:22,779 | INFO |   segmentation_forged_only_iou: 0.6066799421265721
+2026-06-16 19:03:22,779 | INFO |   segmentation_forged_only_mcc: 0.7449454550489917
+2026-06-16 19:03:22,779 | INFO |   segmentation_mean_image_dice: 0.7866628715110752
+2026-06-16 19:03:22,779 | INFO |   segmentation_mean_image_iou: 0.7654611159676739
+2026-06-16 19:03:22,779 | INFO |   segmentation_forged_mean_image_dice: 0.5302972228028059
+2026-06-16 19:03:22,779 | INFO |   segmentation_forged_mean_image_iou: 0.4779774307475632
+2026-06-16 19:03:22,779 | INFO |   classification_roc_auc: 0.9695577299412916
+2026-06-16 19:03:22,779 | INFO |   classification_average_precision: 0.9551963663713608
+2026-06-16 19:03:22,779 | INFO |   segmentation_pixel_roc_auc: 0.9562120309528505
+2026-06-16 19:03:22,779 | INFO |   segmentation_pixel_average_precision: 0.7691570444456848
+2026-06-16 19:03:22,780 | INFO | Saved metrics JSON: weights\test_metrics.json
