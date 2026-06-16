@@ -1,17 +1,24 @@
-# Image Manipulation Detection and Localization
+# Image Manipulation Detection And Localization
 
-Binary image manipulation detection and localization using a U-Net segmentation model from `segmentation_models_pytorch`.
+A PyTorch project for binary image manipulation detection and pixel-level localization on CASIA v2.0.
 
-The first training stage uses CASIA2 with:
+The model is a `segmentation_models_pytorch` U-Net with a MiT-B1 encoder, trained to output:
 
-- SMP `Unet`
-- `mit_b1` encoder with ImageNet weights
-- 384 x 384 inputs
-- 1-channel binary mask logits
-- auxiliary binary classification logits
-- Dice + Focal segmentation loss and BCE-with-logits classification loss
-- PyTorch AMP with `torch.amp.autocast("cuda")` and `torch.amp.GradScaler("cuda")`
-- 1 warmup epoch followed by cosine learning-rate decay
+- a 1-channel manipulation mask logit map
+- an auxiliary image-level manipulation classification logit
+
+## Highlights
+
+- Dataset: CASIA v2.0
+- Backbone: `mit_b1`
+- Architecture: SMP `Unet`
+- Input size: 384 x 384
+- Encoder weights: ImageNet
+- Segmentation loss: Dice + Focal
+- Classification loss: BCE with logits
+- Training: AMP/fp16, AdamW, 1 warmup epoch, cosine LR decay, early stopping
+- Evaluation: classification metrics and pixel-level localization metrics
+- Inference demo: notebook with image/URL input, predicted mask, and highlighted manipulation overlay
 
 ## Project Structure
 
@@ -22,7 +29,6 @@ The first training stage uses CASIA2 with:
 |-- create_splits.py
 |-- dataset.py
 |-- export_weights.py
-|-- fine_tune.py
 |-- inference_demo.ipynb
 |-- inference_demo.py
 |-- loss.py
@@ -32,7 +38,9 @@ The first training stage uses CASIA2 with:
 `-- transforms.py
 ```
 
-Expected CASIA2 layout:
+## Dataset Layout
+
+Place CASIA v2.0 under `datasets/CASIA2`:
 
 ```text
 datasets/
@@ -42,17 +50,15 @@ datasets/
     `-- CASIA 2 Groundtruth/
 ```
 
-`fine_tune.py` is intentionally a placeholder for the future FantasyID fine-tuning stage.
+Authentic images from `Au/` use all-zero masks. Tampered images from `Tp/` are paired with masks from `CASIA 2 Groundtruth/`. The split script drops tampered images if no usable mask is found or if the image and mask dimensions do not match.
 
 ## Setup
-
-Create and activate a Python environment, then install dependencies:
 
 ```powershell
 python -m pip install -r requirements.txt
 ```
 
-For CUDA training on Windows, install the PyTorch build that matches your NVIDIA driver from the official PyTorch instructions if your current environment does not already have CUDA-enabled PyTorch.
+For GPU training, use a CUDA-enabled PyTorch build that matches your NVIDIA driver.
 
 ## Create Splits
 
@@ -60,7 +66,7 @@ For CUDA training on Windows, install the PyTorch build that matches your NVIDIA
 python create_splits.py --dataset-root datasets/CASIA2 --out-dir splits/casia2
 ```
 
-This writes:
+This creates:
 
 ```text
 splits/casia2/train.json
@@ -68,7 +74,7 @@ splits/casia2/val.json
 splits/casia2/test.json
 ```
 
-Each item is:
+Each split item has this shape:
 
 ```json
 {
@@ -77,8 +83,14 @@ Each item is:
 }
 ```
 
-Authentic images use `"gt_mask": "None"` and get an all-zero mask in the dataset loader.
-Tampered images are skipped if no mask can be found or if the image and mask dimensions do not match.
+Authentic samples use:
+
+```json
+{
+  "img_path": "datasets/CASIA2/Au/example.jpg",
+  "gt_mask": "None"
+}
+```
 
 ## Train
 
@@ -86,38 +98,60 @@ Tampered images are skipped if no mask can be found or if the image and mask dim
 python train.py --config configs/unet_mit_b1_casia2.yaml
 ```
 
-Default training uses 100 epochs, 1 warmup epoch, cosine LR decay, and early stopping with patience 5. Early stopping resets when either validation classification accuracy or validation Dice improves.
+Default training settings:
 
-Epoch summaries include loss, Dice, classification accuracy, and mask pixel accuracy.
+- epochs: 100
+- batch size: 32
+- workers: 4
+- learning rate: `1e-4`
+- warmup: 1 epoch
+- scheduler: cosine decay
+- early stopping patience: 5
+- checkpoints: `weights/latest.pt` and `weights/best.pt`
 
-Checkpoints are written to:
-
-```text
-weights/latest.pt
-weights/best.pt
-```
-
-Export the model-only checkpoint for inference and GitHub:
-
-```powershell
-python export_weights.py --checkpoint weights/best.pt --output weights/best_weights.pt
-```
-
-By default, this exports FP16 model-only weights. The full training checkpoint `weights/best.pt` includes training state and stays ignored; `weights/best_weights.pt` is the compact inference checkpoint to commit.
-
-Console output from `create_splits.py` and `train.py` is also appended to:
+Logs are appended to:
 
 ```text
 logs.txt
 ```
 
-## Current CASIA2 Results
+## Export Compact Weights
 
-The current checkpoint was trained on the generated CASIA2 80/10/10 split with `mit_b1`, 384 x 384 inputs, batch size 32, AMP/fp16, AdamW at `1e-4`, 1 warmup epoch, cosine LR decay, and early stopping enabled. The best checkpoint selected from validation was epoch 13.
+The full `weights/best.pt` checkpoint includes optimizer, scheduler, config, and metrics. Export model-only FP16 weights for inference and GitHub:
+
+```powershell
+python export_weights.py --checkpoint weights/best.pt --output weights/best_weights.pt
+```
+
+The compact checkpoint is saved as:
+
+```text
+weights/best_weights.pt
+```
+
+## Test
+
+Evaluate the held-out CASIA v2 test split:
+
+```powershell
+python test.py --config configs/unet_mit_b1_casia2.yaml --checkpoint weights/best_weights.pt
+```
+
+`test.py` reports classification and localization metrics including accuracy, balanced accuracy, precision, recall, specificity, F1/Dice, IoU, MCC, ROC-AUC, and average precision where available.
+
+Metrics are saved to:
+
+```text
+weights/test_metrics.json
+```
+
+## Current CASIA v2 Results
+
+The current checkpoint was trained on the generated CASIA v2 80/10/10 split. The best checkpoint was selected from validation.
 
 Held-out test split size: 1,261 images.
 
-Headline test metrics from `weights/best.pt`:
+Headline test metrics:
 
 | Task | Metric | Score |
 | --- | --- | ---: |
@@ -130,21 +164,7 @@ Headline test metrics from `weights/best.pt`:
 | Localization | Pixel ROC-AUC | 0.9562 |
 | Localization | Pixel average precision | 0.7692 |
 
-Note: pixel accuracy is high at 0.9888 but is less informative for manipulation localization because background pixels dominate the masks.
-
-## Test
-
-After training, evaluate the best checkpoint on the held-out test split:
-
-```powershell
-python test.py --config configs/unet_mit_b1_casia2.yaml --checkpoint weights/best_weights.pt
-```
-
-This reports paper-style classification metrics and segmentation metrics, including accuracy, balanced accuracy, precision, recall, specificity, F1/Dice, IoU, MCC, ROC-AUC, and average precision where available. Metrics are appended to `logs.txt` and saved to:
-
-```text
-weights/test_metrics.json
-```
+Pixel accuracy was 0.9888, but it is less informative for localization because background pixels dominate manipulation masks.
 
 ## Inference Demo
 
@@ -155,4 +175,27 @@ IMAGE_SOURCE = ""
 THRESHOLD = 0.5
 ```
 
-`IMAGE_SOURCE` can be a local image path or an image URL. The notebook imports only `run` from [inference_demo.py](inference_demo.py), loads `weights/best_weights.pt`, prints the classification probability, and displays the source image, predicted binary mask, and highlighted manipulated regions.
+`IMAGE_SOURCE` can be a local image path or an image URL. The notebook loads `weights/best_weights.pt`, prints the classification output, and displays:
+
+- source image
+- predicted binary mask
+- highlighted manipulated regions
+
+## GitHub Push
+
+The repository is configured to ignore datasets, full checkpoints, logs, and generated outputs. Commit the compact model-only checkpoint:
+
+```powershell
+git add .gitattributes .gitignore README.md configs create_splits.py dataset.py export_weights.py inference_demo.ipynb inference_demo.py loss.py model.py requirements.txt test.py train.py transforms.py weights/best_weights.pt
+git commit -m "Initial CASIA v2 image manipulation detection pipeline"
+git branch -M main
+gh repo create image-manipulation-detection --public --source . --remote origin --push
+```
+
+Use `--private` instead of `--public` for a private repository.
+
+## Syntax Check
+
+```powershell
+python -m py_compile model.py dataset.py transforms.py loss.py create_splits.py train.py test.py inference_demo.py export_weights.py
+```
